@@ -1,4 +1,4 @@
-import { Info } from "./info.model";
+import { Info } from "../../../models/info.model";
 
 export interface CharacterResponse {
   info: Info;

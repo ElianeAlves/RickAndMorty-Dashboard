@@ -7,9 +7,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import localePtBr from '@angular/common/locales/pt';
-import { EpisodeService } from './services/episode.service';
 import { LocationService } from './services/location.service';
 import { CharacterService } from './pages/character/services/character.service';
+import { EpisodeService } from './pages/episode/services/episode.service';
 registerLocaleData(localePtBr)
 
 @Component({
@@ -26,6 +26,6 @@ export class AppComponent implements OnInit {
   constructor(private _authService: AuthService) { }
 
   ngOnInit(): void {
-    this._authService.isAuthenticated$.subscribe(res => this.isAuthenticated = res);  }
-
+    this._authService.isAuthenticated$.subscribe(res => this.isAuthenticated = res);
+  }
 }

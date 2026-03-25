@@ -1,5 +1,4 @@
 import { LocationService } from './../../services/location.service';
-import { EpisodeService } from './../../services/episode.service';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { CardComponent } from "../../components/card/card.component";
@@ -7,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { CardEpisodeComponent } from "../../components/card-episode/card-episode.component";
 import { CardLocationComponent } from "../../components/card-location/card-location.component";
 import { CharacterService } from '../character/services/character.service';
+import { EpisodeService } from '../episode/services/episode.service';
 
 @Component({
   selector: 'app-home',

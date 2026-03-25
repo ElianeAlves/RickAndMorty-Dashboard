@@ -1,13 +1,13 @@
-import { EpisodeListComponent } from './episode-list.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EpisodeListComponent } from './pages/episode-list/episode-list.component';
 
 const routes: Routes = [
-  {path: '', component: EpisodeListComponent}
+  { path: '', component: EpisodeListComponent }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class EpisodeListRoutingModule { }
+export class EpisodeRoutingModule { }

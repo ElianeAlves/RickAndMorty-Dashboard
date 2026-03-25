@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { Character } from '../../models/character.model';
+import { Character } from '../../pages/character/models/character.model';
 
 @Component({
   selector: 'app-card',
