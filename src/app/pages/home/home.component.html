@@ -35,14 +35,13 @@
       <ng-container *ngIf="characters">
         <ng-container *ngFor="let item of characters.slice(0,4)">
           <div class=" d-flex justify-content-center">
-            <app-card [routerLink]="['/character-details', item.id]" [item]="item"></app-card>
+            <app-card [routerLink]="[item.id]" [item]="item"></app-card>
           </div>
         </ng-container>
       </ng-container>
     </div>
     <div class="d-flex justify-content-center mt-3">
-      <button type="button" class="btn btn-dark text-cor3 font-class" routerLink="/character-list">Ver
-        mais</button>
+      <button type="button" class="btn btn-dark text-cor3 font-class" routerLink="/character">Ver mais</button>
     </div>
   </div>
 </div>

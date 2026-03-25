@@ -7,11 +7,9 @@
   </div>
   <div class="container my-5">
     <div class="row row-cols-md-4 gy-5">
-      <ng-container *ngFor="let item of data">
-        <div class=" d-flex justify-content-center">
-          <app-card [routerLink]="['/character-details', item.id]" [item]="item"></app-card>
-        </div>
-      </ng-container>
+      <div *ngFor="let item of data" class="d-flex justify-content-center">
+        <app-card [routerLink]="[item.id]" [item]="item"></app-card>
+      </div>
     </div>
   </div>
 

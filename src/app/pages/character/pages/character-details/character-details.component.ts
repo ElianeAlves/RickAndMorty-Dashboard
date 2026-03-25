@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Character } from '../../../../models/character.model';
 import { CharacterService } from '../../services/character.service';
+import { switchMap, forkJoin, map } from 'rxjs';
 
 @Component({
   selector: 'app-character-details',
@@ -14,15 +15,23 @@ export class CharacterDetailsComponent implements OnInit {
 
   constructor(
     private _characterService: CharacterService,
-    private _route: ActivatedRoute
+    private _activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this._route.params.subscribe(({ id }) => {
-      this._characterService.getCharacterById(id).subscribe(res => this.character = res);
-      this._characterService.getCharacters().subscribe(res =>
-        this.otherCharacters = res.results.filter((item: Character) => item.id != id)
-      );
+    this._activatedRoute.params.pipe(switchMap(({ id }) =>
+      forkJoin({
+        character: this._characterService.getCharacterById(id),
+        characters: this._characterService.getCharacters()
+      }).pipe(
+        map(({ character, characters }) => ({
+          character,
+          otherCharacters: characters.results.filter((item: Character) => item.id != id)
+        }))
+      )
+    )).subscribe(({ character, otherCharacters }) => {
+      this.character = character;
+      this.otherCharacters = otherCharacters;
     });
   }
 }
