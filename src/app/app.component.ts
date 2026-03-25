@@ -7,9 +7,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import localePtBr from '@angular/common/locales/pt';
-import { LocationService } from './services/location.service';
 import { CharacterService } from './pages/character/services/character.service';
 import { EpisodeService } from './pages/episode/services/episode.service';
+import { LocationService } from './pages/location/services/location.service';
 registerLocaleData(localePtBr)
 
 @Component({

@@ -5,8 +5,6 @@ import { CharacterRoutingModule } from './character-routing.module';
 import { CharacterDetailsComponent } from './pages/character-details/character-details.component';
 import { CharacterListComponent } from './pages/character-list/character-list.component';
 import { CardComponent } from '../../components/card/card.component';
-import { ReactiveFormsModule } from '@angular/forms';
-
 
 @NgModule({
   declarations: [
@@ -16,8 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     CharacterRoutingModule,
-    CardComponent,
-    ReactiveFormsModule
+    CardComponent
   ]
 })
 export class CharacterModule { }

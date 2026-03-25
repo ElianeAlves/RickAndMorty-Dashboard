@@ -1,12 +1,12 @@
 import { Component, Input } from '@angular/core';
+import { Location } from '../../pages/location/models/location.model';
 
 @Component({
   selector: 'app-card-location',
   standalone: true,
-  imports: [],
   templateUrl: './card-location.component.html',
   styleUrl: './card-location.component.scss'
 })
 export class CardLocationComponent {
-@Input() item: any
+  @Input() item: Location = {} as Location;
 }

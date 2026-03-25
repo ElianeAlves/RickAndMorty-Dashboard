@@ -9,5 +9,5 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'character', loadChildren: () => import('./pages/character/character.module').then(m => m.CharacterModule), canActivate: [AuthGuard] },
   { path: 'episode', loadChildren: () => import('./pages/episode/episode.module').then(m => m.EpisodeModule), canActivate: [AuthGuard] },
-  { path: 'location-list', loadChildren: () => import('./pages/location-list/location-list.module').then(m => m.LocationListModule), canActivate: [AuthGuard] },
+  { path: 'location', loadChildren: () => import('./pages/location/location.module').then(m => m.LocationModule), canActivate: [AuthGuard] },
 ];
