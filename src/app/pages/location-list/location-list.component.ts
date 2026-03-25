@@ -1,4 +1,4 @@
-import { CharacterService } from './../../services/character.service';
+import { CharacterService } from '../character/services/character.service';
 import { LocationService } from './../../services/location.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -10,23 +10,22 @@ import { Component, OnInit } from '@angular/core';
 export class LocationListComponent implements OnInit {
   location: any;
   info: any;
-  constructor(private locationService: LocationService,
-    private characterService: CharacterService
-  ) {
 
-  }
+  constructor(
+    private _characterService: CharacterService,
+    private _locationService: LocationService,
+  ) { }
+
   ngOnInit(): void {
-    this.locationService.getLocation().subscribe((res: any) => {
-      if (res) {
-        this.info = res.info
-        this.location = res.results
-      }
-    })
+    this._locationService.getLocation().subscribe(res => {
+      this.info = res.info;
+      this.location = res.results;
+    });
   }
 
   proxima(): void {
     if (this.info.next) {
-      this.characterService.getNextPage(this.info.next).subscribe((res: any) => {
+      this._characterService.getNextPage(this.info.next).subscribe((res: any) => {
         this.info = res.info;
         this.location = res.results;
         window.scrollTo(0, 0);
@@ -36,7 +35,7 @@ export class LocationListComponent implements OnInit {
 
   anterior(): void {
     if (this.info.prev) {
-      this.characterService.getPreviousPage(this.info.prev).subscribe((res: any) => {
+      this._characterService.getPreviousPage(this.info.prev).subscribe((res: any) => {
         this.info = res.info;
         this.location = res.results;
         window.scrollTo(0, 0);

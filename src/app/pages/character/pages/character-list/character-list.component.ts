@@ -1,8 +1,5 @@
-import { CharacterService } from './../../services/character.service';
 import { Component, OnInit } from '@angular/core';
-import { Results } from '../../models/results';
-import { DataService } from './../../services/data.service';
-import { FormGroup } from '@angular/forms';
+import { CharacterService } from '../../services/character.service';
 
 @Component({
   selector: 'app-character-list',
@@ -10,20 +7,16 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./character-list.component.scss']
 })
 export class CharacterListComponent implements OnInit {
-  data: Results[] = [];
+  data: any[] = [];
   info: any = {
     next: '',
     prev: ''
   };
 
-  constructor(private characterService: CharacterService) { }
+  constructor(private _characterService: CharacterService) { }
 
   ngOnInit(): void {
-    this.getResults();
-  }
-
-  getResults(): void {
-    this.characterService.getCharacters().subscribe((res: any) => {
+    this._characterService.getCharacters().subscribe((res: any) => {
       this.info = res.info;
       this.data = res.results;
     });
@@ -32,17 +25,14 @@ export class CharacterListComponent implements OnInit {
   teste(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
     const inputValue = inputElement.value;
-    // Você pode armazenar o valor em uma propriedade ou fazer outras operações
-
-    this.characterService.getCharactersByName(inputValue).subscribe((res: any) => {
-      console.log(res)
+    this._characterService.getCharactersByName(inputValue).subscribe((res: any) => {
       this.data = res.results
     })
   }
 
   proxima(): void {
     if (this.info.next) {
-      this.characterService.getNextPage(this.info.next).subscribe((res: any) => {
+      this._characterService.getNextPage(this.info.next).subscribe((res: any) => {
         this.info = res.info;
         this.data = res.results;
         window.scrollTo(0, 0);
@@ -52,7 +42,7 @@ export class CharacterListComponent implements OnInit {
 
   anterior(): void {
     if (this.info.prev) {
-      this.characterService.getPreviousPage(this.info.prev).subscribe((res: any) => {
+      this._characterService.getPreviousPage(this.info.prev).subscribe((res: any) => {
         this.info = res.info;
         this.data = res.results;
         window.scrollTo(0, 0);

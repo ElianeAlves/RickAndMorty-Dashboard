@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { Results } from '../../models/results';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { Character } from '../../models/character.model';
 
 @Component({
   selector: 'app-card',
@@ -10,7 +10,6 @@ import { RouterModule } from '@angular/router';
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss'
 })
-
 export class CardComponent {
-  @Input() item!: Results
+  @Input() item: Character = {} as Character;
 }

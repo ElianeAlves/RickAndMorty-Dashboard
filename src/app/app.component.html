@@ -1,12 +1,10 @@
 <div *ngIf="isAuthenticated; else loginTemplate">
   <div class="container-fluid">
     <div class="row">
-      <!-- Navbar fixa na esquerda ocupando 2 colunas -->
       <div class="col-lg-2 p-0 m-0">
         <app-navbar></app-navbar>
       </div>
 
-      <!-- Conteúdo na direita ocupando 10 colunas com scroll -->
       <div class="col-lg-10 p-0 m-0">
         <router-outlet></router-outlet>
       </div>

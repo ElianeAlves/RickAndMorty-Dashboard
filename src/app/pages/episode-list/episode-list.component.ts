@@ -1,4 +1,4 @@
-import { CharacterService } from './../../services/character.service';
+import { CharacterService } from '../character/services/character.service';
 import { EpisodeService } from './../../services/episode.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,17 +11,16 @@ export class EpisodeListComponent implements OnInit {
   episodes: any;
   info: any;
 
+  constructor(
+    private episodeService: EpisodeService,
+    private characterService: CharacterService
+  ) { }
 
-  constructor(private episodeService: EpisodeService,private characterService: CharacterService) {
-
-  }
   ngOnInit(): void {
     this.episodeService.getEpisodes().subscribe((res: any) => {
-      if (res) {
-        this.info = res.info
-        this.episodes = res.results
-      }
-    })
+      this.info = res.info
+      this.episodes = res.results
+    });
   }
 
   proxima(): void {
@@ -43,6 +42,4 @@ export class EpisodeListComponent implements OnInit {
       });
     }
   }
-
-
 }

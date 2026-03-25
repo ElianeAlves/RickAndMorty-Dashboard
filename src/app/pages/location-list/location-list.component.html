@@ -1,26 +1,26 @@
 <div class="background py-3 min-vh-100">
-    <h2 class="text-center fs-2 font-class text-cor3 py-3">Localizações</h2>
-    <div class="container">
-        <div class="row row-cols-md-4 gy-5">
-            <ng-container *ngIf="location">
-                <ng-container *ngFor="let item of location">
-                    <div class="">
-                        <app-card-location [item]="item"></app-card-location>
-                    </div>
-                </ng-container>
-            </ng-container>
-        </div>
-        <div class="d-flex justify-content-center mt-3">
-            <nav aria-label="...">
-                <ul class="pagination">
-                    <li class="page-item">
-                        <a class="page-link" tabindex="-1" (click)="anterior()">Anterior</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" (click)="proxima()">Próxima</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+  <h2 class="text-center fs-2 font-class text-cor3 py-3">Localizações</h2>
+  <div class="container">
+    <div class="row row-cols-md-4 gy-5">
+      <ng-container *ngIf="location">
+        <ng-container *ngFor="let item of location">
+          <div class="">
+            <app-card-location [item]="item"></app-card-location>
+          </div>
+        </ng-container>
+      </ng-container>
     </div>
+    <div class="d-flex justify-content-center mt-3">
+      <nav aria-label="...">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" tabindex="-1" (click)="anterior()">Anterior</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" (click)="proxima()">Próxima</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 </div>

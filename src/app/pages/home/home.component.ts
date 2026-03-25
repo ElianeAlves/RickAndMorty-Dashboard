@@ -1,13 +1,12 @@
 import { LocationService } from './../../services/location.service';
 import { EpisodeService } from './../../services/episode.service';
-import { CharacterService } from './../../services/character.service';
 import { CommonModule } from '@angular/common';
-import { Results } from './../../models/results';
 import { Component, OnInit } from '@angular/core';
 import { CardComponent } from "../../components/card/card.component";
 import { RouterModule } from '@angular/router';
 import { CardEpisodeComponent } from "../../components/card-episode/card-episode.component";
 import { CardLocationComponent } from "../../components/card-location/card-location.component";
+import { CharacterService } from '../character/services/character.service';
 
 @Component({
   selector: 'app-home',
@@ -17,7 +16,7 @@ import { CardLocationComponent } from "../../components/card-location/card-locat
   imports: [CommonModule, CardComponent, RouterModule, CardEpisodeComponent, CardLocationComponent],
 })
 export class HomeComponent implements OnInit {
-  characters!: Results[];
+  characters!: any[];
   location: any;
   episodes: any;
   infoCharacters: any;
@@ -29,21 +28,15 @@ export class HomeComponent implements OnInit {
   totalLocation: number = 0;
 
   constructor(
-    private characterService: CharacterService,
-    private episodeService: EpisodeService,
-    private locationService: LocationService
-  ) {
+    private _characterService: CharacterService,
+    private _episodeService: EpisodeService,
+    private _locationService: LocationService,
+  ) { }
 
-  }
   ngOnInit(): void {
-    this.getResults()
-  }
-
-  getResults() {
-    this.characterService.getCharacters().subscribe((res: any) => {
+    this._characterService.getCharacters().subscribe((res: any) => {
       if (res) {
         this.characters = res.results
-        console.log(this.characters)
 
         for (let index = 0; index < res.info.count; index++) {
           const element = index;
@@ -54,7 +47,7 @@ export class HomeComponent implements OnInit {
       }
     })
 
-    this.episodeService.getEpisodes().subscribe((res: any) => {
+    this._episodeService.getEpisodes().subscribe((res: any) => {
       if (res) {
         this.episodes = res.results
 
@@ -67,7 +60,7 @@ export class HomeComponent implements OnInit {
       }
     })
 
-    this.locationService.getLocation().subscribe((res: any) => {
+    this._locationService.getLocation().subscribe((res: any) => {
       if (res) {
         this.location = res.results
 

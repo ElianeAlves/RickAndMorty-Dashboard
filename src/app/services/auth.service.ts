@@ -8,16 +8,15 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AuthService {
   private mockUser = { username: 'user@gmail.com', password: 'password' };
-  //isAuthenticated é um observable para as telas tratarem exibição de conteúdo ou não caso não esteja logado
   private _isAuthenticated = new BehaviorSubject<boolean>(this.checkInitialAuthState());
   public isAuthenticated$ = this._isAuthenticated.asObservable();
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private router: Router,
-    @Inject(PLATFORM_ID) private platformId: Object
   ) { }
 
-  /* IsPlatformbrowser para identificar a inicialização do localstorage do lado do browser, 
+  /* IsPlatformbrowser para identificar a inicialização do localstorage do lado do browser,
   pois na servidor não possui, fica apresentando erro de console (localstorage not defined) */
   private checkInitialAuthState(): boolean {
     if (isPlatformBrowser(this.platformId)) {
@@ -29,7 +28,6 @@ export class AuthService {
   login(username: string, password: string): boolean {
     if (username === this.mockUser.username && password === this.mockUser.password) {
       if (isPlatformBrowser(this.platformId)) {
-        //Não implemetado token de validação de usuário com JWT, apenas exemplo de item de usuário armazenado lo localStorage
         localStorage.setItem('authToken', 'mockToken');
         this._isAuthenticated.next(true);
         this.router.navigate(['/home']);
