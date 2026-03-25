@@ -11,7 +11,13 @@ import { RouterModule } from '@angular/router';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent {
-  constructor(public authService: AuthService){
+  menuLink = [
+    { routerLink: '/home', label: 'Home' },
+    { routerLink: '/character', label: 'Personagens' },
+    { routerLink: '/episode', label: 'Episódios' },
+    { routerLink: '/location', label: 'Localizações' },
+    { action: () => this.authService.logout(), label: 'Sair' },
+  ];
 
-  }
+  constructor(public authService: AuthService) { }
 }

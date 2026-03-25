@@ -1,5 +1,4 @@
 import { AuthService } from './services/auth.service';
-import { DataService } from './services/data.service';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
@@ -15,7 +14,7 @@ registerLocaleData(localePtBr)
 @Component({
   selector: 'app-root',
   standalone: true,
-  providers: [DataService, CharacterService, EpisodeService, LocationService],
+  providers: [CharacterService, EpisodeService, LocationService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   imports: [CommonModule, RouterOutlet, HttpClientModule, NavbarComponent, FooterComponent],

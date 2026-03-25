@@ -1,4 +1,4 @@
-<div *ngIf="character" class="container-fluid py-5" style="background-color: #272b33;">
+<div *ngIf="!!character" class="container-fluid py-5" style="background-color: #272b33;">
   <div class="container">
     <div class="row g-3">
       <div class="col-4">
@@ -21,15 +21,15 @@
         </div>
         <div class="d-flex gap-2 align-items-center mt-2">
           <p class="text-secondary fw-bold">Localização:</p>
-          <p class="text-white fw-medium">{{character.location.name}}</p>
+          <p class="text-white fw-medium">{{character.location?.name}}</p>
         </div>
         <div class="d-flex gap-2 align-items-center mt-2">
           <p class="text-secondary fw-bold">Aparece em:</p>
-          <p class="text-white fw-medium">{{character.episode.length}} episódios</p>
+          <p class="text-white fw-medium">{{character.episode?.length}} episódios</p>
         </div>
         <div class="d-flex gap-2 align-items-center mt-2">
           <p class="text-secondary fw-bold">Origem:</p>
-          <p class="text-white fw-medium">{{character.origin.name}}</p>
+          <p class="text-white fw-medium">{{character.origin?.name}}</p>
         </div>
       </div>
     </div>

@@ -14,8 +14,8 @@ export class CharacterDetailsComponent implements OnInit {
   otherCharacters: Character[] = [];
 
   constructor(
-    private _characterService: CharacterService,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private _characterService: CharacterService
   ) { }
 
   ngOnInit(): void {

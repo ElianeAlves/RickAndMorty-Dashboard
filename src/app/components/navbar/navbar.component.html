@@ -4,33 +4,19 @@
       <a routerLink="/" href=""><img src="./assets/logo.png" alt="logo rick and morty" width="200"
           class="my-3 w-100"></a>
       <ul class="navbar-nav mb-2 mb-lg-0 w-100">
-        <li class="nav-item">
-          <a class="nav-link fw-bold fs-5 hover" aria-current="page" routerLink="/home">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-bold fs-5 hover" aria-current="page" routerLink="/character">Personagens</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-bold fs-5 hover" aria-current="page" routerLink="/episode">Episódios</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-bold fs-5 hover" aria-current="page" routerLink="/location">Localizações</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-bold fs-5 hover" aria-current="page" (click)="authService.logout()">Sair</a>
+        <li *ngFor="let link of menuLink" class="nav-item">
+          <a (click)="link?.action()" class="nav-link fw-bold fs-5 hover" aria-current="page" [routerLink]="link.routerLink">{{link.label}}</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
 
-
 <nav class="navbar d-block d-lg-none navbar-dark bg-dark p-0">
   <div class="container-fluid">
     <div class="row">
       <div class="col">
         <a routerLink="/" href=""><img src="./assets/logo.png" alt="logo rick and morty" width="100" class="w-50"></a>
-
       </div>
       <div class="col d-flex justify-content-end">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -39,7 +25,6 @@
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
-
     </div>
   </div>
 </nav>
@@ -47,20 +32,8 @@
   <div class="bg-dark p-4">
     <div>
       <ul class="navbar-nav mb-2 mb-lg-0 w-100">
-        <li class="nav-item">
-          <a class="nav-link fw-bold fs-5 hover" aria-current="page" routerLink="/home">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-bold fs-5 hover" aria-current="page" routerLink="/character-list">Personagens</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-bold fs-5 hover" aria-current="page" routerLink="/episode-list">Episódios</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-bold fs-5 hover" aria-current="page" routerLink="/location-list">Localizações</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link fw-bold fs-5 hover" aria-current="page" (click)="authService.logout()">Sair</a>
+        <li *ngFor="let link of menuLink" class="nav-item">
+          <a (click)="link?.action()" class="nav-link fw-bold fs-5 hover" aria-current="page" [routerLink]="link.routerLink">{{link.label}}</a>
         </li>
       </ul>
     </div>

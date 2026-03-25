@@ -7,6 +7,10 @@ import { CardLocationComponent } from "../../components/card-location/card-locat
 import { CharacterService } from '../character/services/character.service';
 import { EpisodeService } from '../episode/services/episode.service';
 import { LocationService } from '../location/services/location.service';
+import { Character } from '../character/models/character.model';
+import { Location } from '../location/models/location.model';
+import { Episode } from '../episode/models/episode.model';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -16,61 +20,32 @@ import { LocationService } from '../location/services/location.service';
   imports: [CommonModule, CardComponent, RouterModule, CardEpisodeComponent, CardLocationComponent],
 })
 export class HomeComponent implements OnInit {
-  characters!: any[];
-  location: any;
-  episodes: any;
-  infoCharacters: any;
-  infoEpisodes: any;
-  infoLocation: any;
-  element!: number;
-  totalCharacters: number = 0;
-  totalEpisodes: number = 0;
-  totalLocation: number = 0;
+  characters: Character[] = [];
+  episodes: Episode[] = [];
+  location: Location[] = [];
+  totalLength: { total: number, label: string }[] = [];
 
   constructor(
     private _characterService: CharacterService,
     private _episodeService: EpisodeService,
-    private _locationService: LocationService,
+    private _locationService: LocationService
   ) { }
 
   ngOnInit(): void {
-    this._characterService.getCharacters().subscribe((res: any) => {
-      if (res) {
-        this.characters = res.results
+    forkJoin({
+      characters: this._characterService.getCharacters(),
+      episodes: this._episodeService.getEpisodes(),
+      location: this._locationService.getLocation()
+    }).subscribe(({ characters, episodes, location }) => {
+      this.characters = characters.results;
+      this.episodes = episodes.results;
+      this.location = location.results;
 
-        for (let index = 0; index < res.info.count; index++) {
-          const element = index;
-          setTimeout(() => {
-            return this.totalCharacters = element
-          }, 1000);
-        }
-      }
-    })
-
-    this._episodeService.getEpisodes().subscribe((res: any) => {
-      if (res) {
-        this.episodes = res.results
-
-        for (let index = 0; index < res.info.count; index++) {
-          const element = index;
-          setTimeout(() => {
-            return this.totalEpisodes = element
-          }, 1000);
-        }
-      }
-    })
-
-    this._locationService.getLocation().subscribe((res: any) => {
-      if (res) {
-        this.location = res.results
-
-        for (let index = 0; index < res.info.count; index++) {
-          const element = index;
-          setTimeout(() => {
-            return this.totalLocation = element
-          }, 1000);
-        }
-      }
-    })
+      this.totalLength = [
+        { total: characters.info.count, label: 'Personagens' },
+        { total: episodes.info.count, label: 'Episódios' },
+        { total: location.info.count, label: 'Localizações' }
+      ];
+    });
   }
 }
